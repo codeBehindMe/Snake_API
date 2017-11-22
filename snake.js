@@ -225,7 +225,7 @@ function RenderGrid(game, border) {
 
 
 // This function holds the game. Handles things like height of the game, width of the game, grid size and how fast the snake moves.
-function Game(height, width, gridSize, speed) {
+function Game(height, width, gridSize, speed,snakeCol) {
     this.h = height; // How high your game is.
     this.w = width; // How Wide your game is.
     this.gs = gridSize; // Size of the grid (size of the snake and the food).
@@ -239,7 +239,7 @@ function Game(height, width, gridSize, speed) {
 
     this.grid = new RenderGrid(this); // Generate the grid for snake to move around in.
     this.food = new Food(this); // Generate food.
-    this.snake = new Snake(this, 5, 2, 3, "green"); // Generate a snake.
+    this.snake = new Snake(this, 5, 2, 3, snakeCol); // Generate a snake.
 
     // Reference the function instance. Don't worry too much about this, but it's to set how fast your snake moves.
     var _this = this;
@@ -270,7 +270,11 @@ function Game(height, width, gridSize, speed) {
     // Assigning the food colour.
     this.foodColour = function (colour) {
         this.food.foodCol = colour;
-    }
+    };
+
+    this.snakeColour = function(colour){
+        this.snake.col = colour;
+    };
 }
 
 // endregion
@@ -280,8 +284,7 @@ function Game(height, width, gridSize, speed) {
 /*
 START YOUR CODE HERE
  */
-var snakeGame = new Game(25, 25, 25, 15);
-snakeGame.foodColour("orange");
+
 
 
 // endregion
